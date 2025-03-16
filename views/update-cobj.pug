@@ -3,19 +3,19 @@ html
         title= title
         link(rel="stylesheet", href="/css/style.css")
     body
-        h1 Create New Project
         div.form-wrapper
-            form(action="/create" method="POST")
+            h1 Create New Project
+            form(action="/update-cobj" method="POST")
                 div
                     label(for="name") Project Name:
                     input(type="text" id="name" name="name" value=project.properties.name required)
                 
                 div
                     label(for="description") Description:
-                    input(type="text" id="description" name="description" value=project.properties.description required)
+                    textarea(id="description" name="description" rows="4" required)= project.properties.description
                 
                 div
                     label(for="cost") Cost:
-                    input(type="text" id="cost" name="cost" value=project.properties.cost required)
+                    input(type="number" id="cost" name="cost" value=project.properties.cost required)
                 
                 input(type="submit" value="Create Project")

@@ -35,8 +35,8 @@ app.get('/', async (req, res) => {
 
 // * Code for Route 2 goes here
 
-app.get('/form', (req, res) => {
-    res.render('form', { 
+app.get('/update-cobj', (req, res) => {
+    res.render('update-cobj', { 
         title: 'Create Project',
         project: {
             properties: {
@@ -51,6 +51,30 @@ app.get('/form', (req, res) => {
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
 // * Code for Route 3 goes here
+
+app.post('/update-cobj', async (req, res) => {
+    const createUrl = 'https://api.hubapi.com/crm/v3/objects/projects';
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    };
+
+    const projectData = {
+        properties: {
+            name: req.body.name,
+            description: req.body.description,
+            cost: req.body.cost
+        }
+    };
+
+    try {
+        await axios.post(createUrl, projectData, { headers });
+        res.redirect('/');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error creating project');
+    }
+});
 
 /** 
 * * This is sample code to give you a reference for how you should structure your calls. 

@@ -3,15 +3,16 @@ html
         title= title
         link(rel="stylesheet", href="/css/style.css")
     body
-        h1 Projects
-        if data && data.length
-            ul.cards
-                each item in data
-                    li.card
-                        p Name: #{item.properties.name}
-                        p Description: #{item.properties.description}
-                        p Cost: #{item.properties.cost}
-        else
-            p No projects found
+        div.container
+            h1 Custom Object (Project) Table
+            a(href="/update-cobj" class="action-link") Add/Update this table
 
-        a(href="/form") Create New Project
+            if data && data.length
+                ul.cards
+                    each item in data
+                        li.card
+                            p Name: #{item.properties.name}
+                            p Description: #{item.properties.description}
+                            p Cost: #{item.properties.cost}
+            else
+                p No projects found
