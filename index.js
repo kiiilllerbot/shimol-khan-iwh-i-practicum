@@ -15,6 +15,22 @@ const PRIVATE_APP_ACCESS = process.env.PRIVATE_APP_ACCESS;
 
 // * Code for Route 1 goes here
 
+app.get('/', async (req, res) => {
+  const customObjects = 'https://api.hubapi.com/crm/v3/objects/projects?properties=name,description,cost';
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    }
+    try {
+        const resp = await axios.get(customObjects, { headers });
+        const data = resp.data.results;
+        res.render('home', { title: 'Homepage | Projects', data });      
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error fetching custom object - Projects');
+    }
+});
+
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
 
 // * Code for Route 2 goes here

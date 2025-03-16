@@ -1,0 +1,17 @@
+html
+    head
+        title= title
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        h1 Projects
+        if data && data.length
+            ul.cards
+                each item in data
+                    li.card
+                        p Name: #{item.properties.name}
+                        p Description: #{item.properties.description}
+                        p Cost: #{item.properties.cost}
+        else
+            p No projects found
+
+        a(href="/form") Create New Project

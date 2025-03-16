@@ -11,10 +11,11 @@ h1 {
 }
 
 .cards {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  list-style: none;
 }
 
 .card {
